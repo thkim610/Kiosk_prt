@@ -2,6 +2,7 @@ package kiosk;
 
 public class HereOrder extends Order{
 
+	private OnHere onHere;
 	private int orderNum;
 	
 	//HereOrder 생성자(Order 클래스 상속)
@@ -9,6 +10,10 @@ public class HereOrder extends Order{
 		super(menu, count, price);
 	}
 
+	public void setOnHere(OnHere onHere) {
+		this.onHere = onHere;
+	}
+	
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
@@ -26,7 +31,7 @@ public class HereOrder extends Order{
 		int change = deposit - orderPrice;
 		if (change >= 0) {
 			System.out.println("잔돈 "+change+"원 입니다. ");
-			System.out.println(orderNum+ "번호로 "+ menu + " 주문이 완료되었습니다. 잠시 기다려주세요.");
+			onHere.successHere(menu, orderNum, count);;
 			return true;
 		} else {
 			System.out.println("금액이 부족합니다.");

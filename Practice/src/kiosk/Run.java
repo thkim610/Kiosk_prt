@@ -25,6 +25,12 @@ public class Run {
 				System.out.println("주문 방식 번호를 입력해주세요. (1. 배달 2. 포장 3. 매장)");
 				int oNum = sc.nextInt();
 				
+				//번호 잘못 입력 시, 다시 입력하라는 문구 출력
+				if(!k.oNumCheck(oNum)) {
+					System.out.println("번호를 다시 입력해주세요.");
+					continue;
+				}
+				
 				System.out.println("메뉴와 개수를 입력해주세요");
 				String menu = sc.next();
 				
@@ -68,7 +74,7 @@ public class Run {
 				}
 				
 				if (order.runOrder(deposit)) {
-					k.subInventory(count); //재고에서 개수 차감
+					
 				}
 				
 			}

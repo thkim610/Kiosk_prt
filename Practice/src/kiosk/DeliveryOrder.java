@@ -2,7 +2,7 @@ package kiosk;
 
 public class DeliveryOrder extends Order{
 
-
+	OnDelivery onDelivery;
 	String locate; //배달 주소
 
 	//DeliveryOrder 생성자(Order 클래스 상속)
@@ -15,6 +15,9 @@ public class DeliveryOrder extends Order{
 		this.locate = locate;
 	}
 
+	public void setOnDelivery(OnDelivery onDelivery) {
+		this.onDelivery = onDelivery;
+	}
 	
 	//order의 setOrderPrice()를 오버라이딩하여 배달 주문 시 주문 금액 출력
 	@Override
@@ -31,13 +34,14 @@ public class DeliveryOrder extends Order{
 	public boolean runOrder(int deposit) {
 		int change = deposit - orderPrice;
 		if (change >= 0) {
-			System.out.println(locate+" 주소로 "+menu+" 배달 주문이 완료 되었습니다.");
+			onDelivery.successDelivery(menu, locate, count);
 			return true;
 		} else {
 			System.out.println("금액이 부족합니다.");
 			return false;
 		}
 	}
+
 	
 	
 	
