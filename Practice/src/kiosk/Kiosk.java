@@ -23,7 +23,7 @@ public class Kiosk {
 	}
 
 	// 객체지향 특징 반영(캡슐화) -> 의존성 반영 (주문 클래스는 키오스크 클래스에 의존)
-	public Order initOrder(String menu, int count) {
+	public Order initOrder(String menu, int count, int oNum) {
 		int price = 0;
 
 		if (menu.equals("딸기요거트")) {
@@ -42,8 +42,23 @@ public class Kiosk {
 		}
 
 		if (isInventory(count)) {
-			Order order = new Order(menu, count, price);
-			return order; // 인스턴스 반환
+			Order order;
+			
+			//주문 방식 번호에 따라 Order의 자식 인스턴스 생성
+			if(oNum == 1) {
+				order = new DeliveryOrder(menu, count, price); //DeliveryOrder 인스턴스 생성
+				return order;
+			}else if(oNum == 2) {
+				order = new TakeOutOrder(menu, count, price); //TakeOutOrder 인스턴스 생성
+				return order;
+			}else if (oNum == 3) {
+				order = new HereOrder(menu, count, price); //HereOrder 인스턴스 생성
+				return order;
+			}else {
+				System.out.println("잘못된 주문방식 번호입니다.");
+			}
+			return null; // 다른 번호 입력 시 null 반환
+			
 		} else {
 			System.out.println("재고가 부족합니다.");
 			return null; // 참조형이기 때문에 null반환 가능

@@ -3,7 +3,7 @@ package kiosk;
 public class Order {
 	public String menu;
 	public int count;
-	private int orderPrice; //구매한 총 가격
+	int orderPrice; //구매한 총 가격
 	
 	public Order(String menu, int count, int price) {
 		this.menu = menu;
@@ -24,9 +24,8 @@ public class Order {
 	}
 	
 	
-	private void setOrderPrice(int price) {
+	protected void setOrderPrice(int price) {
 		orderPrice = price * count; // 총가격 = 음료가격 * 개수
-		System.out.println(orderPrice + "원 입니다.");
 	}
 
 	public int getOrderPrice() {
