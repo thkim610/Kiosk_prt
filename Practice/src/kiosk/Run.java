@@ -8,69 +8,69 @@ public class Run {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		//Å°¿À½ºÅ© Å° ÀÔ·Â
-		System.out.println("Å°¿À½ºÅ© Å°¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+		//í‚¤ì˜¤ìŠ¤í¬ í‚¤ ì…ë ¥
+		System.out.println("í‚¤ì˜¤ìŠ¤í¬ í‚¤ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 		int key = sc.nextInt();
 
-		//Å°¿À½ºÅ© Å° È®ÀÎ
+		//í‚¤ì˜¤ìŠ¤í¬ í‚¤ í™•ì¸
 		if (Kiosk.key == key) {
-			//¸ÅÀå Àç°í °³¼ö ¼³Á¤
-			System.out.println("¸ÅÀå Àç°í°³¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			//ë§¤ì¥ ì¬ê³  ê°œìˆ˜ ì„¤ì •
+			System.out.println("ë§¤ì¥ ì¬ê³ ê°œìˆ˜ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			int inventory = sc.nextInt();
 			
-			//Kiosk Å¬·¡½º ÀÎ½ºÅÏ½º »ı¼º 
+			//Kiosk í´ë˜ìŠ¤ ì¸ìŠ¤í„´ìŠ¤ ìƒì„± 
 			Kiosk k = new Kiosk(inventory);
 			while (true) {
-				//ÁÖ¹® ¹æ½Ä ÀÔ·Â
-				System.out.println("ÁÖ¹® ¹æ½Ä ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. (1. ¹è´Ş 2. Æ÷Àå 3. ¸ÅÀå)");
+				//ì£¼ë¬¸ ë°©ì‹ ì…ë ¥
+				System.out.println("ì£¼ë¬¸ ë°©ì‹ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. (1. ë°°ë‹¬ 2. í¬ì¥ 3. ë§¤ì¥)");
 				int oNum = sc.nextInt();
 				
-				//¹øÈ£ Àß¸ø ÀÔ·Â ½Ã, ´Ù½Ã ÀÔ·ÂÇÏ¶ó´Â ¹®±¸ Ãâ·Â
+				//ë²ˆí˜¸ ì˜ëª» ì…ë ¥ ì‹œ, ë‹¤ì‹œ ì…ë ¥í•˜ë¼ëŠ” ë¬¸êµ¬ ì¶œë ¥
 				if(!k.oNumCheck(oNum)) {
-					System.out.println("¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+					System.out.println("ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 					continue;
 				}
 				
-				System.out.println("¸Ş´º¿Í °³¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+				System.out.println("ë©”ë‰´ì™€ ê°œìˆ˜ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”");
 				String menu = sc.next();
 				
-				//"Á¾·á" ÀÔ·Â ½Ã, ¹İº¹¹®À» ºüÁ®³ª°¡ kiosk Á¾·á
-				if (menu.equals("Á¾·á")) {
-					System.out.println("ÇÁ·Î±×·¥À» Á¾·á ÇÕ´Ï´Ù.");
+				//"ì¢…ë£Œ" ì…ë ¥ ì‹œ, ë°˜ë³µë¬¸ì„ ë¹ ì ¸ë‚˜ê°€ kiosk ì¢…ë£Œ
+				if (menu.equals("ì¢…ë£Œ")) {
+					System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 					break;
 				}
 				
 				int count = sc.nextInt();
 				
-				//kiosk ÀÎ½ºÅÏ½ºÀÇ initOrder ¸Ş¼Òµå¸¦ Order Å¸ÀÔÀ¸·Î ¾÷Ä³½ºÆÃ
-				Order order = k.initOrder(menu, count,oNum); //initOrder()´Â OrderÅ¸ÀÔ
+				//kiosk ì¸ìŠ¤í„´ìŠ¤ì˜ initOrder ë©”ì†Œë“œë¥¼ Order íƒ€ì…ìœ¼ë¡œ ì—…ìºìŠ¤íŒ…
+				Order order = k.initOrder(menu, count,oNum); //initOrder()ëŠ” Orderíƒ€ì…
 				if (order == null) {
 					continue;
 				}
 				
-				System.out.print("ÀÔ±İ ±İ¾×: ");
-				int deposit = sc.nextInt(); //ÀÔ±İ±İ¾×
+				System.out.print("ì…ê¸ˆ ê¸ˆì•¡: ");
+				int deposit = sc.nextInt(); //ì…ê¸ˆê¸ˆì•¡
 				
-				//ÁÖ¹® ¹æ½Ä¿¡ µû¸¥ Ãß°¡ Á¤º¸ ÀÔ·Â
+				//ì£¼ë¬¸ ë°©ì‹ì— ë”°ë¥¸ ì¶”ê°€ ì •ë³´ ì…ë ¥
 				if(oNum == 1) {
-					DeliveryOrder od = (DeliveryOrder) order; //DeliveryOrder·Î ´Ù¿îÄ³½ºÆÃ
-					System.out.println("¹è´Ş ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+					DeliveryOrder od = (DeliveryOrder) order; //DeliveryOrderë¡œ ë‹¤ìš´ìºìŠ¤íŒ…
+					System.out.println("ë°°ë‹¬ ì£¼ì†Œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 					String locate = sc.next();
 					
-					od.setLocate(locate); //¹è´Ş ÁÖ¼Ò ÀúÀå
+					od.setLocate(locate); //ë°°ë‹¬ ì£¼ì†Œ ì €ì¥
 					
 				}else if(oNum == 2) {
-					TakeOutOrder to = (TakeOutOrder)order; // TakeOutOrder·Î ´Ù¿îÄ³½ºÆÃ
-					System.out.println("Æ÷Àå ½Ã°£À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+					TakeOutOrder to = (TakeOutOrder)order; // TakeOutOrderë¡œ ë‹¤ìš´ìºìŠ¤íŒ…
+					System.out.println("í¬ì¥ ì‹œê°„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 					int time = sc.nextInt();
 					
-					to.setTime(time); //Æ÷Àå ½Ã°£ ÀúÀå
+					to.setTime(time); //í¬ì¥ ì‹œê°„ ì €ì¥
 				}else if(oNum == 3) {
-					HereOrder ho = (HereOrder)order; // HereOrder·Î ´Ù¿îÄ³½ºÆÃ
-					System.out.println("ÁÖ¹®¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+					HereOrder ho = (HereOrder)order; // HereOrderë¡œ ë‹¤ìš´ìºìŠ¤íŒ…
+					System.out.println("ì£¼ë¬¸ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 					int orderNum = sc.nextInt();
 					
-					ho.setOrderNum(orderNum); //ÁÖ¹®¹øÈ£ ÀúÀå
+					ho.setOrderNum(orderNum); //ì£¼ë¬¸ë²ˆí˜¸ ì €ì¥
 				}
 				
 				if (order.runOrder(deposit)) {
@@ -80,7 +80,7 @@ public class Run {
 			}
 			
 		} else {
-			System.out.println("Å°¿À½ºÅ© Å°°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("í‚¤ì˜¤ìŠ¤í¬ í‚¤ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		
 		sc.close();

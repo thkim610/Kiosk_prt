@@ -3,7 +3,7 @@ package kiosk;
 public class Order {
 	public String menu;
 	public int count;
-	int orderPrice; //±¸¸ÅÇÑ ÃÑ °¡°İ
+	int orderPrice; //êµ¬ë§¤í•œ ì´ ê°€ê²©
 	
 	public Order(String menu, int count, int price) {
 		this.menu = menu;
@@ -14,22 +14,22 @@ public class Order {
 	public boolean runOrder(int deposit) {
 		int change = deposit - orderPrice;
 		if (change >= 0) {
-			System.out.print("ÀÜµ· "+change+"¿Í ");
-			System.out.println(menu + " ³ª¿Ô½À´Ï´Ù.");
+			System.out.print("ì”ëˆ "+change+"ì™€ ");
+			System.out.println(menu + " ë‚˜ì™”ìŠµë‹ˆë‹¤.");
 			return true;
 		} else {
-			System.out.println("±İ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+			System.out.println("ê¸ˆì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 			return false;
 		}
 	}
 	
 	
 	protected void setOrderPrice(int price) {
-		orderPrice = price * count; // ÃÑ°¡°İ = À½·á°¡°İ * °³¼ö
+		orderPrice = price * count; // ì´ê°€ê²© = ìŒë£Œê°€ê²© * ê°œìˆ˜
 	}
 
 	public int getOrderPrice() {
-		return this.orderPrice; // ÃÑ °¡°İ Ãâ·Â ¸Ş¼Òµå
+		return this.orderPrice; // ì´ ê°€ê²© ì¶œë ¥ ë©”ì†Œë“œ
 	}
 
 }

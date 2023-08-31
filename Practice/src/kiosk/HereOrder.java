@@ -5,7 +5,7 @@ public class HereOrder extends Order{
 	private OnHere onHere;
 	private int orderNum;
 	
-	//HereOrder »ı¼ºÀÚ(Order Å¬·¡½º »ó¼Ó)
+	//HereOrder ìƒì„±ì(Order í´ë˜ìŠ¤ ìƒì†)
 	public HereOrder(String menu, int count, int price) {
 		super(menu, count, price);
 	}
@@ -18,23 +18,23 @@ public class HereOrder extends Order{
 		this.orderNum = orderNum;
 	}
 	
-	//orderÀÇ setOrderPrice()¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© ¸ÅÀå ÁÖ¹® ½Ã ÁÖ¹® ±İ¾× Ãâ·Â
+	//orderì˜ setOrderPrice()ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ ë§¤ì¥ ì£¼ë¬¸ ì‹œ ì£¼ë¬¸ ê¸ˆì•¡ ì¶œë ¥
 	@Override
 	protected void setOrderPrice(int price) {
 		super.setOrderPrice(price);
-		System.out.println(orderPrice+"¿ø ÀÔ´Ï´Ù.");
+		System.out.println(orderPrice+"ì› ì…ë‹ˆë‹¤.");
 	}
 	
-	//orderÀÇ runOrder()¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© ¸ÅÀå ÁÖ¹® ½Ã ÁÖ¹®¿Ï·á ¹®±¸ Ãâ·Â
+	//orderì˜ runOrder()ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ ë§¤ì¥ ì£¼ë¬¸ ì‹œ ì£¼ë¬¸ì™„ë£Œ ë¬¸êµ¬ ì¶œë ¥
 	@Override
 	public boolean runOrder(int deposit) {
 		int change = deposit - orderPrice;
 		if (change >= 0) {
-			System.out.println("ÀÜµ· "+change+"¿ø ÀÔ´Ï´Ù. ");
+			System.out.println("ì”ëˆ "+change+"ì› ì…ë‹ˆë‹¤. ");
 			onHere.successHere(menu, orderNum, count);;
 			return true;
 		} else {
-			System.out.println("±İ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+			System.out.println("ê¸ˆì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 			return false;
 		}
 	}

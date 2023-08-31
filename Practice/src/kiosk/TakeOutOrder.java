@@ -5,7 +5,7 @@ public class TakeOutOrder extends Order {
 	private OnTakeOut onTakeOut;
 	private int time;
 	
-	//TakeOutOrder »ı¼ºÀÚ(Order Å¬·¡½º »ó¼Ó)
+	//TakeOutOrder ìƒì„±ì(Order í´ë˜ìŠ¤ ìƒì†)
 	public TakeOutOrder(String menu, int count, int price) {
 		super(menu, count, price);
 	}
@@ -18,29 +18,28 @@ public class TakeOutOrder extends Order {
 		this.time = time;
 	}
 
-	//orderÀÇ setOrderPrice()¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© Æ÷Àå ÁÖ¹® ½Ã ÁÖ¹® ±İ¾× Ãâ·Â
+	//orderì˜ setOrderPrice()ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ í¬ì¥ ì£¼ë¬¸ ì‹œ ì£¼ë¬¸ ê¸ˆì•¡ ì¶œë ¥
 	@Override
 	protected void setOrderPrice(int price) {
-		int discount = 500; //Æ÷Àå ÇÒÀÎ¾×
+		int discount = 500; //í¬ì¥ í• ì¸ì•¡
 		super.setOrderPrice(price);
 		orderPrice -= discount;
-		System.out.println("Å×ÀÌÅ© ¾Æ¿ôÀº "+discount+"¿øÀÌ ÇÒÀÎµÇ¾î "+orderPrice+"¿øÀÔ´Ï´Ù.");
+		System.out.println("í…Œì´í¬ ì•„ì›ƒì€ "+discount+"ì›ì´ í• ì¸ë˜ì–´ "+orderPrice+"ì›ì…ë‹ˆë‹¤.");
 	}
 	
-	//orderÀÇ runOrder()¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© Æ÷Àå ÁÖ¹® ½Ã ÁÖ¹®¿Ï·á ¹®±¸ Ãâ·Â
+	//orderì˜ runOrder()ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ í¬ì¥ ì£¼ë¬¸ ì‹œ ì£¼ë¬¸ì™„ë£Œ ë¬¸êµ¬ ì¶œë ¥
 	@Override
 	public boolean runOrder(int deposit) {
 		int change = deposit - orderPrice;
 		if (change >= 0) {
-			System.out.print("ÀÜµ· "+change+"¿ø ÀÔ´Ï´Ù. ");
+			System.out.print("ì”ëˆ "+change+"ì› ì…ë‹ˆë‹¤. ");
 			onTakeOut.successTakeOut(menu, time, count);
 			return true;
 		} else {
-			System.out.println("±İ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+			System.out.println("ê¸ˆì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 			return false;
 		}
 	}
 
-	
 	
 }

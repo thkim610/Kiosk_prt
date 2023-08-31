@@ -2,14 +2,14 @@ package kiosk;
 
 public class Kiosk implements OnDelivery, OnTakeOut, OnHere {
 	public static int key = 0;
-	private int inventory; // Àç°í °³¼ö
+	private int inventory; // ì¬ê³  ê°œìˆ˜
 
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public Kiosk(int inventory) {
 		this.inventory = inventory;
 	}
 
-	// Àç°í °³¼ö°¡ ÃæºĞÈ÷ ÀÖ´ÂÁö È®ÀÎ (true/false)
+	// ì¬ê³  ê°œìˆ˜ê°€ ì¶©ë¶„íˆ ìˆëŠ”ì§€ í™•ì¸ (true/false)
 	private boolean isInventory(int count) {
 		if (inventory >= count) {
 			return true;
@@ -28,72 +28,72 @@ public class Kiosk implements OnDelivery, OnTakeOut, OnHere {
 
 	public void subInventory(int count) {
 		inventory -= count;
-		System.out.println("¸ÅÀå ³²Àº Àç°í: " + inventory);
+		System.out.println("ë§¤ì¥ ë‚¨ì€ ì¬ê³ : " + inventory);
 	}
 
-	// °´Ã¼ÁöÇâ Æ¯Â¡ ¹İ¿µ(Ä¸½¶È­) -> ÀÇÁ¸¼º ¹İ¿µ (ÁÖ¹® Å¬·¡½º´Â Å°¿À½ºÅ© Å¬·¡½º¿¡ ÀÇÁ¸)
+	// ê°ì²´ì§€í–¥ íŠ¹ì§• ë°˜ì˜(ìº¡ìŠí™”) -> ì˜ì¡´ì„± ë°˜ì˜ (ì£¼ë¬¸ í´ë˜ìŠ¤ëŠ” í‚¤ì˜¤ìŠ¤í¬ í´ë˜ìŠ¤ì— ì˜ì¡´)
 	public Order initOrder(String menu, int count, int oNum) {
 		Order order = null;
 		int price = 0;
 
-		if (menu.equals("¹°")) {
+		if (menu.equals("ë¬¼")) {
 			price = 4500;
-		} else if (menu.equals("Ä«Æä¶ó¶¼") || menu.equals("¹ĞÅ©Æ¼")) {
+		} else if (menu.equals("ì¹´í˜ë¼ë–¼") || menu.equals("ë°€í¬í‹°")) {
 			price = 3500;
-		} else if (menu.equals("¾Æ¸Ş¸®Ä«³ë")) {
+		} else if (menu.equals("ì•„ë©”ë¦¬ì¹´ë…¸")) {
 			price = 2000;
 		} else {
 			price = 0;
 		}
 
 		if (price == 0) {
-			System.out.println("¸Ş´º°¡ ¾ø½À´Ï´Ù.");
+			System.out.println("ë©”ë‰´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 
 		if (isInventory(count)) {
 
-			// ÁÖ¹® ¹æ½Ä ¹øÈ£¿¡ µû¶ó OrderÀÇ ÀÚ½Ä ÀÎ½ºÅÏ½º »ı¼º
+			// ì£¼ë¬¸ ë°©ì‹ ë²ˆí˜¸ì— ë”°ë¼ Orderì˜ ìì‹ ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
 			if (oNum == 1) {
-				order = new DeliveryOrder(menu, count, price); // DeliveryOrder ÀÎ½ºÅÏ½º »ı¼º
-				// ´Ù¿îÄ³½ºÆÃÇÏ¿© DeliveryOrder ÀÎ½ºÅÏ½ºÀÇ ÀÎÀÚ°ªµéÀ» ÀÎÅÍÆäÀÌ½ºÀÇ ÀÎÀÚ°ª¿¡ ÀúÀå
+				order = new DeliveryOrder(menu, count, price); // DeliveryOrder ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+				// ë‹¤ìš´ìºìŠ¤íŒ…í•˜ì—¬ DeliveryOrder ì¸ìŠ¤í„´ìŠ¤ì˜ ì¸ìê°’ë“¤ì„ ì¸í„°í˜ì´ìŠ¤ì˜ ì¸ìê°’ì— ì €ì¥
 				((DeliveryOrder) order).setOnDelivery(this);
 
 			} else if (oNum == 2) {
-				order = new TakeOutOrder(menu, count, price); // TakeOutOrder ÀÎ½ºÅÏ½º »ı¼º
-				// ´Ù¿îÄ³½ºÆÃÇÏ¿© TakeOutOrder ÀÎ½ºÅÏ½ºÀÇ ÀÎÀÚ°ªµéÀ» ÀÎÅÍÆäÀÌ½ºÀÇ ÀÎÀÚ°ª¿¡ ÀúÀå
+				order = new TakeOutOrder(menu, count, price); // TakeOutOrder ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+				// ë‹¤ìš´ìºìŠ¤íŒ…í•˜ì—¬ TakeOutOrder ì¸ìŠ¤í„´ìŠ¤ì˜ ì¸ìê°’ë“¤ì„ ì¸í„°í˜ì´ìŠ¤ì˜ ì¸ìê°’ì— ì €ì¥
 				((TakeOutOrder) order).setOnTakeOut(this);
 			} else if (oNum == 3) {
-				order = new HereOrder(menu, count, price); // HereOrder ÀÎ½ºÅÏ½º »ı¼º
-				// ´Ù¿îÄ³½ºÆÃÇÏ¿© HereOrder ÀÎ½ºÅÏ½ºÀÇ ÀÎÀÚ°ªµéÀ» ÀÎÅÍÆäÀÌ½ºÀÇ ÀÎÀÚ°ª¿¡ ÀúÀå
+				order = new HereOrder(menu, count, price); // HereOrder ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+				// ë‹¤ìš´ìºìŠ¤íŒ…í•˜ì—¬ HereOrder ì¸ìŠ¤í„´ìŠ¤ì˜ ì¸ìê°’ë“¤ì„ ì¸í„°í˜ì´ìŠ¤ì˜ ì¸ìê°’ì— ì €ì¥
 				((HereOrder) order).setOnHere(this);
 			}
 
 		} else {
-			System.out.println("Àç°í°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+			System.out.println("ì¬ê³ ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 		}
 		return order;
 	}
 
-	// OnDelivery ÀÎÅÍÆäÀÌ½º¿¡ Á¤ÀÇµÈ Ãß»ó¸Ş¼Òµå ±¸Çö
+	// OnDelivery ì¸í„°í˜ì´ìŠ¤ì— ì •ì˜ëœ ì¶”ìƒë©”ì†Œë“œ êµ¬í˜„
 	@Override
 	public void successDelivery(String menu, String locate, int count) {
-		System.out.println(locate + " ÁÖ¼Ò·Î " + menu + " ¹è´Ş ÁÖ¹®ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.");
-		subInventory(count); // Àç°í¿¡¼­ °³¼ö Â÷°¨
+		System.out.println(locate + " ì£¼ì†Œë¡œ " + menu + " ë°°ë‹¬ ì£¼ë¬¸ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+		subInventory(count); // ì¬ê³ ì—ì„œ ê°œìˆ˜ ì°¨ê°
 	}
 
-	// OnTakeOut ÀÎÅÍÆäÀÌ½º¿¡ Á¤ÀÇµÈ Ãß»ó¸Ş¼Òµå ±¸Çö
+	// OnTakeOut ì¸í„°í˜ì´ìŠ¤ì— ì •ì˜ëœ ì¶”ìƒë©”ì†Œë“œ êµ¬í˜„
 	@Override
 	public void successTakeOut(String menu, int time, int count) {
-		System.out.println(time + "ºĞ µÚ " + menu + " Æ÷Àå ÁÖ¹®ÀÌ ¿Ï·áµË´Ï´Ù. Àá½Ã ±â´Ù·ÁÁÖ¼¼¿ä.");
-		subInventory(count); // Àç°í¿¡¼­ °³¼ö Â÷°¨
+		System.out.println(time + "ë¶„ ë’¤ " + menu + " í¬ì¥ ì£¼ë¬¸ì´ ì™„ë£Œë©ë‹ˆë‹¤. ì ì‹œ ê¸°ë‹¤ë ¤ì£¼ì„¸ìš”.");
+		subInventory(count); // ì¬ê³ ì—ì„œ ê°œìˆ˜ ì°¨ê°
 
 	}
 
-	// OnHere ÀÎÅÍÆäÀÌ½º¿¡ Á¤ÀÇµÈ Ãß»ó¸Ş¼Òµå ±¸Çö
+	// OnHere ì¸í„°í˜ì´ìŠ¤ì— ì •ì˜ëœ ì¶”ìƒë©”ì†Œë“œ êµ¬í˜„
 	@Override
 	public void successHere(String menu, int orderNum, int count) {
-		System.out.println(orderNum + "¹øÈ£·Î " + menu + " ÁÖ¹®ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù. Àá½Ã ±â´Ù·ÁÁÖ¼¼¿ä.");
-		subInventory(count); // Àç°í¿¡¼­ °³¼ö Â÷°¨
+		System.out.println(orderNum + "ë²ˆí˜¸ë¡œ " + menu + " ì£¼ë¬¸ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. ì ì‹œ ê¸°ë‹¤ë ¤ì£¼ì„¸ìš”.");
+		subInventory(count); // ì¬ê³ ì—ì„œ ê°œìˆ˜ ì°¨ê°
 	}
 
 }

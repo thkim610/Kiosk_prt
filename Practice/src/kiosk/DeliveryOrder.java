@@ -3,9 +3,9 @@ package kiosk;
 public class DeliveryOrder extends Order{
 
 	OnDelivery onDelivery;
-	String locate; //¹è´Ş ÁÖ¼Ò
+	String locate; //ë°°ë‹¬ ì£¼ì†Œ
 
-	//DeliveryOrder »ı¼ºÀÚ(Order Å¬·¡½º »ó¼Ó)
+	//DeliveryOrder ìƒì„±ì(Order í´ë˜ìŠ¤ ìƒì†)
 	public DeliveryOrder(String menu, int count, int price) {
 		super(menu, count, price);
 		setLocate(locate);
@@ -19,17 +19,17 @@ public class DeliveryOrder extends Order{
 		this.onDelivery = onDelivery;
 	}
 	
-	//orderÀÇ setOrderPrice()¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© ¹è´Ş ÁÖ¹® ½Ã ÁÖ¹® ±İ¾× Ãâ·Â
+	//orderì˜ setOrderPrice()ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ ë°°ë‹¬ ì£¼ë¬¸ ì‹œ ì£¼ë¬¸ ê¸ˆì•¡ ì¶œë ¥
 	@Override
 	protected void setOrderPrice(int price) {
-		int deliveryTips = 3000; //¹è´Ş·á
+		int deliveryTips = 3000; //ë°°ë‹¬ë£Œ
 		orderPrice = price * count + deliveryTips;
-		System.out.println("¹è´Şºñ "+deliveryTips+"¿øÀÌ Ãß°¡µÇ¾î "+orderPrice+"¿øÀÔ´Ï´Ù.");
-		System.out.println("¹è´Ş ÁÖ¹®Àº Á¤È®ÇÑ ±İ¾×À» °áÁ¦ ÇØÁÖ¼¼¿ä.");
+		System.out.println("ë°°ë‹¬ë¹„ "+deliveryTips+"ì›ì´ ì¶”ê°€ë˜ì–´ "+orderPrice+"ì›ì…ë‹ˆë‹¤.");
+		System.out.println("ë°°ë‹¬ ì£¼ë¬¸ì€ ì •í™•í•œ ê¸ˆì•¡ì„ ê²°ì œ í•´ì£¼ì„¸ìš”.");
 		
 	}
 
-	//orderÀÇ runOrder()¸¦ ¿À¹ö¶óÀÌµùÇÏ¿© ¹è´Ş ÁÖ¹® ½Ã ÁÖ¹®¿Ï·á ¹®±¸ Ãâ·Â
+	//orderì˜ runOrder()ë¥¼ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ ë°°ë‹¬ ì£¼ë¬¸ ì‹œ ì£¼ë¬¸ì™„ë£Œ ë¬¸êµ¬ ì¶œë ¥
 	@Override
 	public boolean runOrder(int deposit) {
 		int change = deposit - orderPrice;
@@ -37,12 +37,10 @@ public class DeliveryOrder extends Order{
 			onDelivery.successDelivery(menu, locate, count);
 			return true;
 		} else {
-			System.out.println("±İ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+			System.out.println("ê¸ˆì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 			return false;
 		}
 	}
-
-	
 	
 	
 }
